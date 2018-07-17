@@ -16,17 +16,18 @@ const vehicles = (state = defaultState, action) => {
     case UPDATE_VEHICLES_FAILED:
       return defaultState;
     case INCREMENT_VIEWS_SUCCESSFUL:
-      if (!state.records) return Object.assign({}, state, { records: [] });
-      let recordsCopy = state.records.map(a => Object.assign({}, a));
-      action.payload.forEach(view => {
-        // eslint-disable-next-line
-        return recordsCopy.find(copy => {
-          if (copy.vin === view.vin) {
-            copy.views = view.views;
-          }
-        });
-      });
-      return Object.assign({}, state, { records: recordsCopy });
+      return {
+        ...state,
+        records: state.records.map(
+          record =>
+            action.payload.find(view => record.vin === view.vin)
+            ? {
+              ...record,
+              views: action.payload.find(view => record.vin === view.vin).views
+            }
+          : record
+        )
+      };
     case INCREMENT_VIEWS_FAILED:
       return state;
     default:
