@@ -1,0 +1,18 @@
+{
+  "collections": {
+    "vehicles": [
+      {
+        "vin": "1FVABUBS42HJ71072",
+        "views": 123
+      },
+      {
+        "vin": "2D4GP44L17R109740",
+        "views": 0
+      },
+      {
+        "vin": "3GTEK13338G399411",
+        "views": 789
+      }
+    ]
+  }
+}
